@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "compilerOptions": {
     "target": "ES2020",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -20,4 +21,11 @@
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
+=======
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+>>>>>>> 3d1a40b3c90f3603c697e9e075d31f7e3b395a0f
 }
