@@ -1,0 +1,15 @@
+{
+  "status": "commited",
+  "type": "frontend",
+  "scope": "codebase",
+  "localEndpoint": "http://localhost:3000",
+  "executionArgs": {
+    "projectName": "ippan-foundation",
+    "projectPath": "D:\\websites\\ippan.org",
+    "testIds": [],
+    "additionalInstruction": "Test the authentication flow, forum functionality, and admin dashboard features. Focus on user registration, login, forum navigation, thread creation, and admin access.",
+    "envs": {
+      "API_KEY": "sk-user-GXnh5TIvYQW17f0_coj8jWePDHa10g6wLO3SdVmW3r7LbpUeeDWyc1wOLlZZ3W5bLVUYLM8tz2DHvzDZU1CThp1_l067sRxfrDEOnt0eVNglUqyt0-mR-qUiRxaI4T1UET0"
+    }
+  }
+}

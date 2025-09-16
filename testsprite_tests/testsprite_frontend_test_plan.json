@@ -1,0 +1,122 @@
+{
+  "test_plan": {
+    "project_name": "ippan-foundation",
+    "test_type": "frontend",
+    "tests": [
+      {
+        "id": "test_001",
+        "name": "Homepage Load Test",
+        "description": "Test that the homepage loads correctly and displays the main content",
+        "steps": [
+          "Navigate to the homepage",
+          "Verify the IPPAN Foundation title is displayed",
+          "Verify the hero section is visible",
+          "Verify the mission, programs, and forum cards are displayed",
+          "Verify navigation links are present"
+        ],
+        "expected_results": [
+          "Homepage loads without errors",
+          "All main content sections are visible",
+          "Navigation is functional"
+        ]
+      },
+      {
+        "id": "test_002",
+        "name": "Authentication Flow Test",
+        "description": "Test user registration and login functionality",
+        "steps": [
+          "Navigate to the auth page",
+          "Click on sign up option",
+          "Fill in email and password",
+          "Submit the form",
+          "Verify successful registration",
+          "Test login with the created account",
+          "Verify successful login and redirect"
+        ],
+        "expected_results": [
+          "User can register successfully",
+          "User can login successfully",
+          "User is redirected to forum after login"
+        ]
+      },
+      {
+        "id": "test_003",
+        "name": "Forum Navigation Test",
+        "description": "Test forum navigation and thread viewing",
+        "steps": [
+          "Navigate to the forum page",
+          "Verify categories are displayed",
+          "Click on a category",
+          "Verify threads in that category are shown",
+          "Click on a thread",
+          "Verify thread content and posts are displayed"
+        ],
+        "expected_results": [
+          "Forum page loads correctly",
+          "Categories are visible and clickable",
+          "Threads are displayed properly",
+          "Thread content is readable"
+        ]
+      },
+      {
+        "id": "test_004",
+        "name": "New Thread Creation Test",
+        "description": "Test creating a new forum thread (requires authentication)",
+        "steps": [
+          "Login to the application",
+          "Navigate to forum",
+          "Click 'New thread' button",
+          "Fill in thread title",
+          "Select a category",
+          "Write thread content in Markdown",
+          "Submit the thread",
+          "Verify thread is created and visible"
+        ],
+        "expected_results": [
+          "New thread form is accessible",
+          "Thread is created successfully",
+          "Thread appears in the forum",
+          "Markdown content is rendered correctly"
+        ]
+      },
+      {
+        "id": "test_005",
+        "name": "Admin Dashboard Access Test",
+        "description": "Test admin dashboard access and functionality",
+        "steps": [
+          "Login as an admin user",
+          "Navigate to /admin",
+          "Verify admin dashboard loads",
+          "Check user management section",
+          "Check thread management section",
+          "Check post management section",
+          "Check category management section"
+        ],
+        "expected_results": [
+          "Admin dashboard is accessible",
+          "All management sections are visible",
+          "Admin can view and manage content"
+        ]
+      },
+      {
+        "id": "test_006",
+        "name": "Responsive Design Test",
+        "description": "Test the application on different screen sizes",
+        "steps": [
+          "Test on desktop view (1920x1080)",
+          "Test on tablet view (768x1024)",
+          "Test on mobile view (375x667)",
+          "Verify navigation works on all sizes",
+          "Verify content is readable on all sizes",
+          "Verify forms are usable on all sizes"
+        ],
+        "expected_results": [
+          "Application is responsive",
+          "Navigation is functional on all devices",
+          "Content is readable on all screen sizes",
+          "Forms are usable on mobile devices"
+        ]
+      }
+    ]
+  }
+}

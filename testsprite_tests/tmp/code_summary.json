@@ -1,0 +1,84 @@
+{
+  "tech_stack": [
+    "TypeScript",
+    "Next.js 14",
+    "React 18",
+    "Supabase",
+    "PostgreSQL",
+    "Tailwind CSS",
+    "React Hook Form",
+    "Zod",
+    "React Markdown"
+  ],
+  "features": [
+    {
+      "name": "Authentication System",
+      "description": "Complete authentication system with email/password login, user profiles, and role-based access control",
+      "files": [
+        "app/auth/page.tsx",
+        "app/auth/callback/route.ts",
+        "app/auth-provider.tsx",
+        "lib/supabase/client.ts",
+        "lib/supabase/server.ts",
+        "lib/supabase/types.ts"
+      ]
+    },
+    {
+      "name": "Forum System",
+      "description": "Full-featured forum with categories, threads, posts, and Markdown support",
+      "files": [
+        "app/forum/page.tsx",
+        "app/forum/[slug]/page.tsx",
+        "app/forum/category/[slug]/page.tsx",
+        "app/forum/new/page.tsx"
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "description": "Administrative interface for content moderation and user management",
+      "files": [
+        "app/admin/page.tsx",
+        "app/admin/admin-dashboard.tsx"
+      ]
+    },
+    {
+      "name": "User Profile Management",
+      "description": "User profile pages and management functionality",
+      "files": [
+        "app/profile/page.tsx"
+      ]
+    },
+    {
+      "name": "Static Pages",
+      "description": "About, Contact, and Legal information pages",
+      "files": [
+        "app/about/page.tsx",
+        "app/contact/page.tsx",
+        "app/legal/page.tsx"
+      ]
+    },
+    {
+      "name": "Database Schema",
+      "description": "Supabase database schema with RLS policies for security",
+      "files": [
+        "supabase-schema.sql"
+      ]
+    },
+    {
+      "name": "Middleware Protection",
+      "description": "Route protection middleware for authentication",
+      "files": [
+        "middleware.ts"
+      ]
+    },
+    {
+      "name": "Layout and Navigation",
+      "description": "Main application layout with navigation and footer",
+      "files": [
+        "app/layout.tsx",
+        "app/page.tsx",
+        "app/globals.css"
+      ]
+    }
+  ]
+}
