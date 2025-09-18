@@ -1,9 +1,10 @@
-/** @type {import('next').NextConfig} */
+﻿/** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    remotePatterns: [
-      { protocol: 'https', hostname: '**.supabase.co' }
-    ]
-  }
-}
-export default nextConfig
+    // Allow Vercel Image Optimization; add domains later if you serve remote images.
+    // domains: [],
+  },
+  trailingSlash: false,
+  reactStrictMode: true,
+};
+export default nextConfig;

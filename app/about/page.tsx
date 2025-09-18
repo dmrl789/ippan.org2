@@ -1,9 +1,8 @@
-export default function About() {
+﻿export default function Page() {
   return (
-    <div className="prose">
-      <h1>About the Foundation</h1>
-      <p>The IPPAN Foundation supports the research and stewardship of the Immutable Proof & Availability Network.</p>
-      <p>We convene contributors across cryptography, distributed systems, and finance to advance verifiable, energy‑efficient infrastructure.</p>
-    </div>
-  )
+    <main className="mx-auto max-w-3xl px-6 py-16">
+      <h1 className="text-3xl font-semibold">About IPPAN</h1>
+      <p className="mt-4 text-gray-700">Write your about text here.</p>
+    </main>
+  );
 }

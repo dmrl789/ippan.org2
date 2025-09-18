@@ -1,7 +1,3 @@
-@tailwind base;
+﻿@tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-:root { color-scheme: light; }
-
-.prose p { margin: 0.5rem 0; }
