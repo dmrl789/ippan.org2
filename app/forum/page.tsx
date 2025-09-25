@@ -328,22 +328,22 @@ export default function ForumPage() {
   }
 
   return (
-    <main className="mx-auto max-w-6xl px-6 py-16">
+    <main className="mx-auto max-w-6xl px-6 py-16 text-slate-300">
       <header className="mb-14 space-y-5">
-        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">Community Forum</p>
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Join the professional IPPAN network</h1>
-        <p className="max-w-3xl text-lg text-gray-700">
+        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-400">Community Forum</p>
+        <h1 className="text-4xl font-bold tracking-tight text-slate-100 sm:text-5xl">Join the professional IPPAN network</h1>
+        <p className="max-w-3xl text-lg text-slate-300">
           Exchange expertise with researchers, engineers, node operators, and public sector partners building on IPPAN. Register
           with your professional email to unlock posting, start new initiatives, and collaborate on programmes that accelerate
           resilient digital infrastructure worldwide.
         </p>
-        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-          <div className="flex items-center gap-2 rounded-full border border-indigo-100 bg-indigo-50 px-4 py-1 text-indigo-700">
-            <span className="h-2 w-2 rounded-full bg-indigo-600" aria-hidden />
+        <div className="flex flex-wrap gap-4 text-sm text-slate-300">
+          <div className="flex items-center gap-2 rounded-full border border-indigo-500/40 bg-indigo-500/10 px-4 py-1 text-indigo-200">
+            <span className="h-2 w-2 rounded-full bg-indigo-400" aria-hidden />
             Real names & verified email identities keep discussions constructive.
           </div>
-          <div className="flex items-center gap-2 rounded-full border border-emerald-100 bg-emerald-50 px-4 py-1 text-emerald-700">
-            <span className="h-2 w-2 rounded-full bg-emerald-600" aria-hidden />
+          <div className="flex items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1 text-emerald-200">
+            <span className="h-2 w-2 rounded-full bg-emerald-400" aria-hidden />
             Moderated by the IPPAN Foundation community team.
           </div>
         </div>
@@ -351,21 +351,21 @@ export default function ForumPage() {
 
       <section className="grid gap-10 lg:grid-cols-[300px,1fr]">
         <aside className="flex flex-col gap-8">
-          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl shadow-slate-950/40">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">Forum access</h2>
+              <h2 className="text-lg font-semibold text-slate-100">Forum access</h2>
               {user ? (
-                <span className="rounded-full bg-emerald-100 px-3 py-1 text-xs font-semibold text-emerald-700">Active member</span>
+                <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-semibold text-emerald-200">Active member</span>
               ) : (
-                <span className="rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-600">Registration required</span>
+                <span className="rounded-full bg-slate-800 px-3 py-1 text-xs font-semibold text-slate-300">Registration required</span>
               )}
             </div>
 
             {user ? (
-              <div className="mt-5 space-y-4 text-sm text-gray-700">
+              <div className="mt-5 space-y-4 text-sm text-slate-300">
                 <div>
-                  <p className="font-medium text-gray-900">{user.displayName}</p>
-                  <p className="text-gray-500">{user.email}</p>
+                  <p className="font-medium text-slate-100">{user.displayName}</p>
+                  <p className="text-slate-400">{user.email}</p>
                 </div>
                 <p>
                   You are authorised to publish threads and replies. Keep conversations focused, actionable, and aligned with the
@@ -374,19 +374,19 @@ export default function ForumPage() {
                 <button
                   type="button"
                   onClick={handleSignOut}
-                  className="inline-flex items-center justify-center rounded-full border border-gray-300 px-4 py-2 text-sm font-semibold text-gray-700 transition hover:border-gray-400 hover:text-gray-900"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
                 >
                   Sign out
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleRegister} className="mt-5 space-y-4 text-sm text-gray-700">
-                <p className="text-gray-600">
+              <form onSubmit={handleRegister} className="mt-5 space-y-4 text-sm text-slate-300">
+                <p className="text-slate-400">
                   Register with your organisation email to participate. A confirmation link will be sent to authorise posting
                   privileges.
                 </p>
                 <div>
-                  <label htmlFor="displayName" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  <label htmlFor="displayName" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Full name
                   </label>
                   <input
@@ -394,11 +394,11 @@ export default function ForumPage() {
                     name="displayName"
                     required
                     placeholder="Ada Lovelace"
-                    className="w-full rounded-2xl border border-gray-200 px-4 py-2.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  <label htmlFor="email" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Work email
                   </label>
                   <input
@@ -407,14 +407,14 @@ export default function ForumPage() {
                     type="email"
                     required
                     placeholder="you@organisation.com"
-                    className="w-full rounded-2xl border border-gray-200 px-4 py-2.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                   />
                 </div>
-                {registerError && <p className="text-sm font-medium text-rose-600">{registerError}</p>}
-                {registerSuccess && <p className="text-sm font-medium text-emerald-600">{registerSuccess}</p>}
+                {registerError && <p className="text-sm font-medium text-rose-500">{registerError}</p>}
+                {registerSuccess && <p className="text-sm font-medium text-emerald-400">{registerSuccess}</p>}
                 <button
                   type="submit"
-                  className="w-full rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700"
+                  className="w-full rounded-full bg-indigo-500 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400"
                 >
                   Send access link
                 </button>
@@ -422,9 +422,9 @@ export default function ForumPage() {
             )}
           </div>
 
-          <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-gray-900">Discussion tracks</h2>
-            <p className="mt-2 text-sm text-gray-600">
+          <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl shadow-slate-950/40">
+            <h2 className="text-lg font-semibold text-slate-100">Discussion tracks</h2>
+            <p className="mt-2 text-sm text-slate-300">
               Choose a track to focus threads by expertise. Admin moderators ensure every topic receives timely review.
             </p>
             <ul className="mt-5 space-y-4">
@@ -434,13 +434,13 @@ export default function ForumPage() {
                   onClick={() => setSelectedCategoryId('all')}
                   className={`flex w-full items-start justify-between rounded-2xl border px-4 py-3 text-left transition ${
                     selectedCategoryId === 'all'
-                      ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                      : 'border-transparent bg-gray-50 text-gray-700 hover:border-gray-200'
+                      ? 'border-indigo-500 bg-indigo-500/10 text-indigo-200 shadow-lg shadow-indigo-500/20'
+                      : 'border-transparent bg-slate-900/60 text-slate-300 hover:border-slate-700'
                   }`}
                 >
                   <div>
                     <p className="text-sm font-semibold">All discussions</p>
-                    <p className="text-xs text-gray-500">View updates from every track.</p>
+                    <p className="text-xs text-slate-400">View updates from every track.</p>
                   </div>
                   <span className="text-xs font-semibold">{threads.length}</span>
                 </button>
@@ -454,13 +454,13 @@ export default function ForumPage() {
                       onClick={() => setSelectedCategoryId(category.id)}
                       className={`flex w-full items-start justify-between rounded-2xl border px-4 py-3 text-left transition ${
                         isSelected
-                          ? 'border-indigo-500 bg-indigo-50 text-indigo-700'
-                          : 'border-transparent bg-gray-50 text-gray-700 hover:border-gray-200'
+                          ? 'border-indigo-500 bg-indigo-500/10 text-indigo-200 shadow-lg shadow-indigo-500/20'
+                          : 'border-transparent bg-slate-900/60 text-slate-300 hover:border-slate-700'
                       }`}
                     >
                       <div>
                         <p className="text-sm font-semibold">{category.name}</p>
-                        <p className="text-xs text-gray-500">{category.description}</p>
+                        <p className="text-xs text-slate-400">{category.description}</p>
                       </div>
                       <span className="text-xs font-semibold">{categoryCounts[category.id] ?? 0}</span>
                     </button>
@@ -468,9 +468,9 @@ export default function ForumPage() {
                 )
               })}
             </ul>
-            <div className="mt-5 rounded-2xl bg-slate-900 p-4 text-sm text-slate-200">
+            <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-950/80 p-4 text-sm text-slate-300">
               <p className="font-semibold text-white">Need help getting started?</p>
-              <p className="mt-1 text-slate-300">
+              <p className="mt-1 text-slate-400">
                 Read our <Link href="/legal/code-of-conduct" className="underline decoration-indigo-400">code of conduct</Link> and
                 <Link href="/contact" className="ml-1 underline decoration-indigo-400">contact the community team</Link> for onboarding
                 support.
@@ -480,15 +480,15 @@ export default function ForumPage() {
         </aside>
 
         <div className="space-y-10">
-          <section className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+          <section className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl shadow-slate-950/40">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">Start a new discussion</h2>
-              <span className="text-xs uppercase tracking-widest text-gray-500">Share proposals, releases, or requests</span>
+              <h2 className="text-lg font-semibold text-slate-100">Start a new discussion</h2>
+              <span className="text-xs uppercase tracking-widest text-slate-400">Share proposals, releases, or requests</span>
             </div>
             <form onSubmit={handleCreateThread} className="mt-5 space-y-4">
               <div className="grid gap-4 md:grid-cols-[2fr,1fr]">
                 <div>
-                  <label htmlFor="thread-title" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  <label htmlFor="thread-title" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Title
                   </label>
                   <input
@@ -497,11 +497,11 @@ export default function ForumPage() {
                     value={threadForm.title}
                     onChange={(event) => setThreadForm((prev) => ({ ...prev, title: event.target.value }))}
                     placeholder="Summarise your topic in a sentence"
-                    className="w-full rounded-2xl border border-gray-200 px-4 py-2.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                   />
                 </div>
                 <div>
-                  <label htmlFor="thread-category" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-gray-500">
+                  <label htmlFor="thread-category" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                     Track
                   </label>
                   <select
@@ -509,7 +509,7 @@ export default function ForumPage() {
                     name="thread-category"
                     value={threadForm.categoryId}
                     onChange={(event) => setThreadForm((prev) => ({ ...prev, categoryId: event.target.value }))}
-                    className="w-full rounded-2xl border border-gray-200 px-4 py-2.5 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                    className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-2.5 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                   >
                     {categories.map((category) => (
                       <option key={category.id} value={category.id}>
@@ -520,7 +520,7 @@ export default function ForumPage() {
                 </div>
               </div>
               <div>
-                <label htmlFor="thread-summary" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-gray-500">
+                <label htmlFor="thread-summary" className="mb-1 block text-xs font-semibold uppercase tracking-widest text-slate-400">
                   Opening message
                 </label>
                 <textarea
@@ -530,15 +530,15 @@ export default function ForumPage() {
                   onChange={(event) => setThreadForm((prev) => ({ ...prev, summary: event.target.value }))}
                   rows={4}
                   placeholder="Provide context, key data points, and a clear call to action for the community."
-                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                  className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                 />
               </div>
-              {threadFormError && <p className="text-sm font-medium text-rose-600">{threadFormError}</p>}
+              {threadFormError && <p className="text-sm font-medium text-rose-500">{threadFormError}</p>}
               <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                {!user && <p className="text-sm text-gray-500">Registration required to publish a discussion.</p>}
+                {!user && <p className="text-sm text-slate-400">Registration required to publish a discussion.</p>}
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-gray-300"
+                  className="inline-flex items-center justify-center rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:bg-slate-700"
                   disabled={!user}
                 >
                   Publish to forum
@@ -549,8 +549,8 @@ export default function ForumPage() {
 
           <section className="space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-lg font-semibold text-gray-900">Latest discussions</h2>
-              <p className="text-sm text-gray-500">
+              <h2 className="text-lg font-semibold text-slate-100">Latest discussions</h2>
+              <p className="text-sm text-slate-400">
                 Showing {filteredThreads.length} {filteredThreads.length === 1 ? 'thread' : 'threads'} in{' '}
                 {selectedCategoryId === 'all'
                   ? 'all tracks'
@@ -559,9 +559,9 @@ export default function ForumPage() {
             </div>
 
             {filteredThreads.length === 0 ? (
-              <div className="rounded-3xl border border-dashed border-gray-300 bg-white p-10 text-center">
-                <p className="text-base font-semibold text-gray-900">No discussions yet in this track</p>
-                <p className="mt-2 text-sm text-gray-600">
+              <div className="rounded-3xl border border-dashed border-slate-700 bg-slate-900/60 p-10 text-center">
+                <p className="text-base font-semibold text-slate-100">No discussions yet in this track</p>
+                <p className="mt-2 text-sm text-slate-400">
                   Be the first to open a conversation and invite community members to contribute insights and resources.
                 </p>
               </div>
@@ -578,8 +578,8 @@ export default function ForumPage() {
                         onClick={() => setActiveThreadId(thread.id)}
                         className={`w-full rounded-2xl border px-5 py-4 text-left transition ${
                           isActive
-                            ? 'border-indigo-500 bg-indigo-50 text-indigo-800 shadow-sm'
-                            : 'border-gray-200 bg-white text-gray-700 hover:border-indigo-200'
+                            ? 'border-indigo-500 bg-indigo-500/10 text-indigo-200 shadow-lg shadow-indigo-500/20'
+                            : 'border-slate-800 bg-slate-900/60 text-slate-300 hover:border-indigo-500/60'
                         }`}
                       >
                         <div className="flex items-center justify-between text-xs uppercase tracking-widest">
@@ -587,49 +587,49 @@ export default function ForumPage() {
                           <span>{new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(thread.createdAt))}</span>
                         </div>
                         <p className="mt-2 text-sm font-semibold">{thread.title}</p>
-                        <p className="mt-1 line-clamp-2 text-xs text-gray-500">{thread.summary}</p>
-                        <p className="mt-3 text-xs text-gray-400">Started by {thread.author.displayName}</p>
+                        <p className="mt-1 line-clamp-2 text-xs text-slate-400">{thread.summary}</p>
+                        <p className="mt-3 text-xs text-slate-500">Started by {thread.author.displayName}</p>
                       </button>
                     )
                   })}
                 </div>
 
                 {activeThread && (
-                  <article className="flex flex-col justify-between rounded-3xl border border-gray-200 bg-white p-6 shadow-sm">
+                  <article className="flex flex-col justify-between rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl shadow-slate-950/40">
                     <div>
-                      <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-widest text-gray-500">
+                      <div className="flex flex-wrap items-center justify-between gap-3 text-xs uppercase tracking-widest text-slate-400">
                         <span>
                           {categories.find((category) => category.id === activeThread.categoryId)?.name ?? 'General'} •{' '}
                           {formatDateTime(activeThread.createdAt)}
                         </span>
                         <span>Created by {activeThread.author.displayName}</span>
                       </div>
-                      <h3 className="mt-3 text-2xl font-semibold text-gray-900">{activeThread.title}</h3>
-                      <p className="mt-4 text-sm leading-relaxed text-gray-700">{activeThread.summary}</p>
+                      <h3 className="mt-3 text-2xl font-semibold text-slate-100">{activeThread.title}</h3>
+                      <p className="mt-4 text-sm leading-relaxed text-slate-300">{activeThread.summary}</p>
                     </div>
 
                     <div className="mt-6 space-y-5">
-                      <h4 className="text-sm font-semibold uppercase tracking-widest text-gray-500">
+                      <h4 className="text-sm font-semibold uppercase tracking-widest text-slate-400">
                         {activeThread.posts.length} {activeThread.posts.length === 1 ? 'Reply' : 'Replies'}
                       </h4>
                       <div className="space-y-4">
                         {activeThread.posts.map((post) => (
-                          <div key={post.id} className="rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                            <div className="flex items-center justify-between text-xs text-gray-500">
-                              <span className="font-semibold text-gray-700">{post.author.displayName}</span>
+                          <div key={post.id} className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
+                            <div className="flex items-center justify-between text-xs text-slate-400">
+                              <span className="font-semibold text-slate-200">{post.author.displayName}</span>
                               <span>{formatDateTime(post.createdAt)}</span>
                             </div>
-                            <p className="mt-3 text-sm leading-relaxed text-gray-700">{post.content}</p>
+                            <p className="mt-3 text-sm leading-relaxed text-slate-300">{post.content}</p>
                           </div>
                         ))}
                         {activeThread.posts.length === 0 && (
-                          <div className="rounded-2xl border border-dashed border-gray-300 p-6 text-center text-sm text-gray-500">
+                          <div className="rounded-2xl border border-dashed border-slate-700 p-6 text-center text-sm text-slate-400">
                             No replies yet. Share your insights to move this discussion forward.
                           </div>
                         )}
                       </div>
                       <form onSubmit={handleReply(activeThread.id)} className="space-y-3">
-                        <label htmlFor={`reply-${activeThread.id}`} className="text-xs font-semibold uppercase tracking-widest text-gray-500">
+                        <label htmlFor={`reply-${activeThread.id}`} className="text-xs font-semibold uppercase tracking-widest text-slate-400">
                           Add your perspective
                         </label>
                         <textarea
@@ -644,16 +644,16 @@ export default function ForumPage() {
                           }
                           rows={4}
                           placeholder={user ? 'Share data, observations, or next steps for the group.' : 'Register to add your reply.'}
-                          className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                          className="w-full rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/30"
                         />
                         {replyErrors[activeThread.id] && (
-                          <p className="text-sm font-medium text-rose-600">{replyErrors[activeThread.id]}</p>
+                          <p className="text-sm font-medium text-rose-500">{replyErrors[activeThread.id]}</p>
                         )}
                         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                          {!user && <p className="text-sm text-gray-500">Register to unlock replies.</p>}
+                          {!user && <p className="text-sm text-slate-400">Register to unlock replies.</p>}
                           <button
                             type="submit"
-                            className="inline-flex items-center justify-center rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:bg-gray-300"
+                            className="inline-flex items-center justify-center rounded-full bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-indigo-500/30 transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:bg-slate-700"
                             disabled={!user}
                           >
                             Post reply
