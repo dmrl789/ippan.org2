@@ -1,8 +1,8 @@
 /** @type {import('tailwindcss').Config} */
-export default {
+module.exports = {
   content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    './app/**/*.{js,ts,jsx,tsx}',
+    './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
     extend: {
@@ -10,9 +10,9 @@ export default {
         brand: {
           DEFAULT: '#0B7F52',
           dark: '#095F3E',
-          light: '#27A379'
-        }
-      }
+          light: '#27A379',
+        },
+      },
     },
   },
   plugins: [],
