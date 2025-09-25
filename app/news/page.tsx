@@ -35,36 +35,34 @@ export const metadata: Metadata = {
     title: 'IPPAN Foundation News & Updates',
     description:
       'Catch up on IPPAN Foundation announcements, research highlights, and ecosystem progress.',
+    card: 'summary',
   },
 }
 
 export default function NewsPage() {
   return (
-    <main className="mx-auto max-w-4xl px-6 py-20">
+    <main className="mx-auto max-w-4xl px-6 py-20 text-slate-300">
       <header className="mb-16">
-        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-600">News & Updates</p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-gray-900">Latest from the IPPAN Foundation</h1>
-      <p className="mt-6 text-lg text-gray-700">
-        Stay informed on protocol development, community initiatives, and opportunities to contribute. Highlights below are
-        refreshed regularly, with detailed briefings distributed through the Foundation newsletter.
-      </p>
-      <div className="mt-6 rounded-3xl border border-indigo-100 bg-white p-6 shadow-sm">
-        <h2 className="text-sm font-semibold uppercase tracking-wide text-gray-500">Topics We Cover</h2>
-        <ul className="mt-4 grid gap-2 text-sm text-gray-600 sm:grid-cols-2">
-          <li>Consensus research and protocol optimization</li>
-          <li>Developer tooling, SDK releases, and integration guides</li>
-          <li>Governance proposals, treasury reports, and policy updates</li>
-          <li>Community events, working groups, and regional workshops</li>
-        </ul>
-      </div>
+        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-400">News & Updates</p>
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-100">
+          Latest from the IPPAN Foundation
+        </h1>
+        <p className="mt-6 text-lg">
+          Stay informed on protocol development, community initiatives, and opportunities to contribute.
+          Highlights below are refreshed regularly, with detailed briefings distributed through the Foundation
+          newsletter.
+        </p>
       </header>
 
       <section className="space-y-6">
         {updates.map((item) => (
-          <article key={item.title} className="rounded-3xl border p-8 shadow-sm">
-            <h2 className="text-2xl font-semibold text-gray-900">{item.title}</h2>
-            <p className="mt-3 text-sm text-gray-600">{item.description}</p>
-            <p className="mt-6 text-sm text-indigo-600">Full briefings coming soon.</p>
+          <article
+            key={item.title}
+            className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 text-slate-300 shadow-xl shadow-slate-950/40"
+          >
+            <h2 className="text-2xl font-semibold text-slate-100">{item.title}</h2>
+            <p className="mt-3 text-sm">{item.description}</p>
+            <p className="mt-6 text-sm text-indigo-300">Full briefings coming soon.</p>
           </article>
         ))}
       </section>

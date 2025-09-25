@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     title: 'IPPAN Community Forum',
     description:
       'Collaborate with the IPPAN Network community on research, integrations, and governance priorities.',
+    card: 'summary',
   },
 }
 
