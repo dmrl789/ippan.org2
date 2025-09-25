@@ -1,3 +1,43 @@
-﻿@tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-semibold text-white tracking-tight;
+  }
+
+  p {
+    @apply text-slate-300;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-sky-500 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-sky-500/30 transition hover:bg-sky-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-500;
+  }
+
+  .card-surface {
+    @apply rounded-3xl border border-slate-800/80 bg-slate-900/50 p-8 shadow-lg shadow-black/20;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.3em] text-slate-400;
+  }
+}
+
+.gradient-background {
+  background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.25), transparent 45%),
+    radial-gradient(circle at bottom right, rgba(99, 102, 241, 0.25), transparent 45%);
+}
