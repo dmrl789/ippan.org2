@@ -1,9 +1,31 @@
+import type { Metadata } from 'next'
+
 const contacts = [
   { label: 'General inquiries', value: 'info@ippan.org' },
   { label: 'Ecosystem partnerships', value: 'partners@ippan.org' },
   { label: 'Community & forum', value: 'community@ippan.org' },
   { label: 'Press & media', value: 'press@ippan.org' },
 ]
+
+export const metadata: Metadata = {
+  title: 'Contact the IPPAN Foundation',
+  description:
+    'Connect with the IPPAN Foundation teams for partnership opportunities, community initiatives, press requests, and general enquiries.',
+  alternates: {
+    canonical: '/contact',
+  },
+  openGraph: {
+    title: 'Contact the IPPAN Foundation',
+    description:
+      'Reach the IPPAN Foundation for collaboration, ecosystem programs, and media requests supporting decentralized infrastructure.',
+    url: '/contact',
+  },
+  twitter: {
+    title: 'Contact the IPPAN Foundation',
+    description:
+      'Email the IPPAN Foundation teams to partner on sustainable blockchain innovation and community growth.',
+  },
+}
 
 export default function Contact() {
   return (
@@ -26,6 +48,28 @@ export default function Contact() {
             </a>
           </div>
         ))}
+      </section>
+
+      <section className="mt-16 grid gap-8 md:grid-cols-2">
+        <div className="rounded-3xl border bg-white p-8 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900">Foundation Headquarters</h2>
+          <address className="mt-4 not-italic text-sm text-gray-600">
+            IPPAN Foundation
+            <br /> 21 Civic Exchange Way
+            <br /> Singapore 048763
+          </address>
+          <p className="mt-4 text-sm text-gray-600">
+            Our distributed team spans multiple continents. Virtual meetings can be scheduled across UTC, EST, and JST timezones
+            with advance notice.
+          </p>
+        </div>
+        <div className="rounded-3xl border bg-slate-50 p-8 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900">Media Resources</h2>
+          <p className="mt-3 text-sm text-gray-600">
+            Accredited journalists and analysts can request executive interviews, protocol briefings, and access to our media
+            asset library. Please include your publication, deadline, and areas of interest when reaching out.
+          </p>
+        </div>
       </section>
 
       <section className="mt-16 rounded-3xl border bg-slate-50 p-10 text-sm text-gray-600">

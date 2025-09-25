@@ -1,3 +1,25 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'About the IPPAN Foundation',
+  description:
+    'Learn how the IPPAN Foundation stewards protocol governance, ecosystem programs, and responsible growth for the IPPAN Network.',
+  alternates: {
+    canonical: '/about',
+  },
+  openGraph: {
+    title: 'About the IPPAN Foundation',
+    description:
+      'Discover the mandate, mission pillars, and technology stewardship initiatives that keep the IPPAN Network credibly neutral and sustainable.',
+    url: '/about',
+  },
+  twitter: {
+    title: 'About the IPPAN Foundation',
+    description:
+      'See how the IPPAN Foundation advances decentralized infrastructure through governance, grants, and technical programs.',
+  },
+}
+
 export default function Page() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-20">

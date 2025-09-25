@@ -1,8 +1,48 @@
+import type { Metadata } from 'next'
+
 const stats = [
   { label: 'Transactions per second', value: 'Millions+' },
   { label: 'Global node operators', value: 'Community-run' },
   { label: 'Energy profile', value: 'Ultra-efficient BlockDAG' },
 ]
+
+const faqItems = [
+  {
+    question: 'What is the IPPAN Network?',
+    answer:
+      'The IPPAN Network is a public, energy-efficient blockchain that combines BlockDAG scalability with deterministic HashTimer™ ordering to support real-time settlement, data availability, and verifiable automation.',
+  },
+  {
+    question: 'How does the IPPAN Foundation support builders?',
+    answer:
+      'We provide grants, reference implementations, governance guidelines, and technical advisory sessions so developers and enterprises can launch production-ready decentralized applications.',
+  },
+  {
+    question: 'Is the IPPAN protocol sustainable?',
+    answer:
+      'Yes. The protocol is designed for low-energy consensus, geographic diversity in node operations, and transparent funding that prioritizes long-term resilience over short-term speculation.',
+  },
+]
+
+export const metadata: Metadata = {
+  title: 'Energy-Efficient Blockchain Infrastructure for Builders',
+  description:
+    'Discover how the IPPAN Foundation stewards the IPPAN Network—an energy-efficient, massively scalable public blockchain powering decentralized finance, IoT, and data services.',
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'IPPAN Foundation | Energy-Efficient Blockchain Infrastructure',
+    description:
+      'IPPAN Foundation stewards a sustainable, massively scalable blockchain built for real-world adoption, machine payments, and verifiable data.',
+    url: '/',
+  },
+  twitter: {
+    title: 'IPPAN Foundation | Energy-Efficient Blockchain Infrastructure',
+    description:
+      'Learn about the IPPAN Foundation mission, technology roadmap, and how to contribute to a sustainable decentralized network.',
+  },
+}
 
 export default function Home() {
   return (
@@ -22,6 +62,11 @@ export default function Home() {
             <p className="mt-4 text-lg text-gray-700">
               We foster a secure, open, and resilient digital ecosystem where developers, businesses, and communities can build,
               innovate, and connect—free from centralized control.
+            </p>
+            <p className="mt-4 text-base text-gray-600">
+              Through public-good research, transparent treasury management, and collaborative governance, the Foundation keeps
+              the IPPAN protocol credibly neutral while advancing real-world adoption across finance, mobility, supply chains,
+              and climate-resilient infrastructure.
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <a
@@ -65,8 +110,12 @@ export default function Home() {
               As a non-profit organization, the IPPAN Foundation is committed to advancing the adoption and long-term sustainability
               of the IPPAN Network. We maintain and evolve the protocol, support developers and builders, and promote fair access
               and global participation so anyone can contribute to network resilience.
-            </p>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+              </p>
+              <p className="mt-4 text-gray-700">
+                Our roadmap emphasizes responsible innovation and regulatory clarity while prioritizing open standards that make
+                decentralized infrastructure approachable for enterprises, public institutions, and mission-driven organizations.
+              </p>
+              <div className="mt-10 grid gap-6 sm:grid-cols-2">
               <div className="rounded-2xl border p-6 shadow-sm">
                 <h3 className="text-lg font-semibold text-gray-900">Protocol Stewardship</h3>
                 <p className="mt-3 text-sm text-gray-600">
@@ -212,6 +261,24 @@ export default function Home() {
               </a>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section className="border-t bg-slate-50">
+        <div className="mx-auto max-w-6xl px-6 py-24">
+          <h2 className="text-3xl font-semibold tracking-tight text-gray-900">Frequently Asked Questions</h2>
+          <p className="mt-6 text-lg text-gray-700">
+            Get quick answers about the IPPAN Network&apos;s vision, sustainability commitments, and how the Foundation collaborates
+            with builders to accelerate decentralized infrastructure adoption.
+          </p>
+          <dl className="mt-10 space-y-6">
+            {faqItems.map((item) => (
+              <div key={item.question} className="rounded-3xl border border-indigo-100 bg-white p-8 shadow-sm">
+                <dt className="text-xl font-semibold text-gray-900">{item.question}</dt>
+                <dd className="mt-3 text-base text-gray-700">{item.answer}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
     </main>
