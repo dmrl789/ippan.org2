@@ -1,3 +1,5 @@
+import type { Metadata } from 'next'
+
 const updates = [
   {
     title: 'Protocol roadmap Q4',
@@ -16,15 +18,39 @@ const updates = [
   },
 ]
 
+export const metadata: Metadata = {
+  title: 'IPPAN Foundation News & Updates',
+  description:
+    'Read the latest IPPAN Foundation announcements covering protocol upgrades, ecosystem grants, governance highlights, and global community events.',
+  alternates: {
+    canonical: '/news',
+  },
+  openGraph: {
+    title: 'IPPAN Foundation News & Updates',
+    description:
+      'Stay informed about protocol roadmap milestones, grant programs, and community calls from the IPPAN Foundation.',
+    url: '/news',
+  },
+  twitter: {
+    title: 'IPPAN Foundation News & Updates',
+    description:
+      'Catch up on IPPAN Foundation announcements, research highlights, and ecosystem progress.',
+    card: 'summary',
+  },
+}
+
 export default function NewsPage() {
   return (
     <main className="mx-auto max-w-4xl px-6 py-20 text-slate-300">
       <header className="mb-16">
         <p className="text-sm font-semibold uppercase tracking-widest text-indigo-400">News & Updates</p>
-        <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-100">Latest from the IPPAN Foundation</h1>
-        <p className="mt-6 text-lg text-slate-300">
-          Stay informed on protocol development, community initiatives, and opportunities to contribute. Highlights below are
-          refreshed regularly, with detailed briefings distributed through the Foundation newsletter.
+        <h1 className="mt-4 text-4xl font-bold tracking-tight text-slate-100">
+          Latest from the IPPAN Foundation
+        </h1>
+        <p className="mt-6 text-lg">
+          Stay informed on protocol development, community initiatives, and opportunities to contribute.
+          Highlights below are refreshed regularly, with detailed briefings distributed through the Foundation
+          newsletter.
         </p>
       </header>
 
@@ -35,7 +61,7 @@ export default function NewsPage() {
             className="rounded-3xl border border-slate-800 bg-slate-900/60 p-8 text-slate-300 shadow-xl shadow-slate-950/40"
           >
             <h2 className="text-2xl font-semibold text-slate-100">{item.title}</h2>
-            <p className="mt-3 text-sm text-slate-300">{item.description}</p>
+            <p className="mt-3 text-sm">{item.description}</p>
             <p className="mt-6 text-sm text-indigo-300">Full briefings coming soon.</p>
           </article>
         ))}
