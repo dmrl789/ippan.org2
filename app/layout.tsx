@@ -74,11 +74,23 @@ const organizationStructuredData = {
   ],
 }
 
-const navLinks = [
-  { href: '/', label: 'Home' },
+type NavLink = {
+  href: string
+  label: string
+  variant?: 'button'
+  external?: boolean
+}
+
+const navLinks: NavLink[] = [
   { href: '/about', label: 'About' },
   { href: '/news', label: 'News' },
   { href: '/forum', label: 'Forum' },
+  {
+    href: 'https://ui.ippan.org',
+    label: 'UI',
+    variant: 'button',
+    external: true,
+  },
   { href: '/contact', label: 'Contact' },
 ]
 
@@ -96,7 +108,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Link>
               <nav aria-label="Primary" className="flex items-center gap-6 text-sm font-medium text-slate-300">
                 {navLinks.map((link) => (
-                  <Link key={link.href} href={link.href} className="transition hover:text-white">
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={
+                      link.variant === 'button'
+                        ? 'rounded-full bg-cyan-400 px-4 py-1.5 text-slate-950 shadow transition hover:bg-cyan-300 hover:text-slate-950'
+                        : 'transition hover:text-white'
+                    }
+                    target={link.external ? '_blank' : undefined}
+                    rel={link.external ? 'noreferrer noopener' : undefined}
+                  >
                     {link.label}
                   </Link>
                 ))}
