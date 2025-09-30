@@ -3,6 +3,8 @@
 import { FormEvent, useEffect, useMemo, useState } from 'react'
 import Link from 'next/link'
 
+import { createClient, isSupabaseClientConfigured } from '@/lib/supabase/client'
+
 type ForumCategory = {
   id: string
   name: string
@@ -173,7 +175,55 @@ function parseStoredThreads(value: string | null): ForumThread[] {
   }
 }
 
+type ThreadRow = {
+  id: string
+  title: string
+  category_id: string | null
+  summary: string | null
+  author_display_name: string | null
+  author_email: string | null
+  created_at: string | null
+}
+
+type PostRow = {
+  id: string
+  thread_id: string
+  content: string | null
+  author_display_name: string | null
+  author_email: string | null
+  created_at: string | null
+}
+
+function mapSupabasePost(row: PostRow): ForumPost {
+  return {
+    id: row.id,
+    author: {
+      displayName: row.author_display_name?.trim() || 'Forum member',
+      email: row.author_email?.trim() || 'member@ippan.org',
+    },
+    content: row.content ?? '',
+    createdAt: row.created_at ?? new Date().toISOString(),
+  }
+}
+
+function mapSupabaseThread(row: ThreadRow, posts: ForumPost[] = []): ForumThread {
+  return {
+    id: row.id,
+    title: row.title,
+    categoryId: row.category_id?.trim() || categories[0]?.id || 'protocol',
+    summary: row.summary ?? '',
+    createdAt: row.created_at ?? new Date().toISOString(),
+    author: {
+      displayName: row.author_display_name?.trim() || 'Forum member',
+      email: row.author_email?.trim() || 'member@ippan.org',
+    },
+    posts,
+  }
+}
+
 export default function ForumClient() {
+  const supabase = createClient()
+  const supabaseEnabled = isSupabaseClientConfigured(supabase)
   const [user, setUser] = useState<ForumUser | null>(null)
   const [threads, setThreads] = useState<ForumThread[]>(defaultThreads)
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('all')
@@ -184,6 +234,8 @@ export default function ForumClient() {
   const [registerSuccess, setRegisterSuccess] = useState('')
   const [replyDrafts, setReplyDrafts] = useState<ReplyDraftState>({})
   const [replyErrors, setReplyErrors] = useState<ReplyErrorState>({})
+  const [isLoadingThreads, setIsLoadingThreads] = useState<boolean>(supabaseEnabled)
+  const [loadError, setLoadError] = useState('')
 
   useEffect(() => {
     if (typeof window === 'undefined') return
@@ -200,15 +252,96 @@ export default function ForumClient() {
       }
     }
 
-    const storedThreads = window.localStorage.getItem(storageKeys.threads)
-    setThreads(parseStoredThreads(storedThreads))
-  }, [])
+    if (!supabaseEnabled) {
+      const storedThreads = window.localStorage.getItem(storageKeys.threads)
+      setThreads(parseStoredThreads(storedThreads))
+      setIsLoadingThreads(false)
+      return
+    }
+
+    let isCancelled = false
+    const fetchForum = async () => {
+      setIsLoadingThreads(true)
+      setLoadError('')
+      try {
+        const [{ data: threadRows, error: threadError }, { data: postRows, error: postError }] = await Promise.all([
+          supabase
+            .from('forum_threads')
+            .select('id,title,category_id,summary,author_display_name,author_email,created_at')
+            .order('created_at', { ascending: false }),
+          supabase
+            .from('forum_posts')
+            .select('id,thread_id,content,author_display_name,author_email,created_at')
+            .order('created_at', { ascending: true }),
+        ])
+
+        if (isCancelled) return
+
+        if (threadError) {
+          console.error('Could not load forum threads from Supabase.', threadError)
+          setLoadError('We could not load the latest discussions from Supabase. Showing local defaults instead.')
+          setThreads(defaultThreads)
+          setActiveThreadId(defaultThreads[0]?.id ?? null)
+          setIsLoadingThreads(false)
+          return
+        }
+
+        if (postError) {
+          console.error('Could not load forum posts from Supabase.', postError)
+          setLoadError('Replies could not be loaded from Supabase. Showing discussions without replies for now.')
+        }
+
+        const postsByThread = new Map<string, ForumPost[]>()
+        ;(postRows ?? []).forEach((post) => {
+          const typedPost = post as PostRow
+          const mappedPost = mapSupabasePost(typedPost)
+          const threadId = typedPost.thread_id
+          const bucket = postsByThread.get(threadId) ?? []
+          bucket.push(mappedPost)
+          postsByThread.set(threadId, bucket)
+        })
+
+        const mappedThreads = (threadRows ?? []).map((thread) => {
+          const typedThread = thread as ThreadRow
+          const posts = postsByThread.get(typedThread.id) ?? []
+          posts.sort((first, second) => new Date(first.createdAt).getTime() - new Date(second.createdAt).getTime())
+          return mapSupabaseThread(typedThread, posts)
+        })
+
+        if (mappedThreads.length === 0) {
+          setThreads(defaultThreads)
+          setActiveThreadId(defaultThreads[0]?.id ?? null)
+        } else {
+          setThreads(mappedThreads)
+          setActiveThreadId(mappedThreads[0]?.id ?? null)
+        }
+      } catch (error) {
+        console.error('Unexpected error loading forum data from Supabase.', error)
+        if (!isCancelled) {
+          setLoadError('Supabase data could not be reached. Showing built-in sample discussions.')
+          setThreads(defaultThreads)
+          setActiveThreadId(defaultThreads[0]?.id ?? null)
+        }
+      } finally {
+        if (!isCancelled) {
+          setIsLoadingThreads(false)
+        }
+      }
+    }
+
+    fetchForum()
+
+    return () => {
+      isCancelled = true
+    }
+  }, [supabase, supabaseEnabled])
 
   useEffect(() => {
     if (typeof window === 'undefined') return
     if (threads.length === 0) return
+    if (supabaseEnabled) return
     window.localStorage.setItem(storageKeys.threads, JSON.stringify(threads))
-  }, [threads])
+  }, [threads, supabaseEnabled])
 
   const filteredThreads = useMemo(() => {
     if (selectedCategoryId === 'all') return threads
@@ -231,7 +364,7 @@ export default function ForumClient() {
     }
   }, [filteredThreads, activeThread])
 
-  const handleRegister = (event: FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setRegisterError('')
     setRegisterSuccess('')
@@ -251,24 +384,70 @@ export default function ForumClient() {
     }
 
     const nextUser: ForumUser = { displayName, email }
+
+    if (supabaseEnabled) {
+      try {
+        const { error: upsertError } = await supabase
+          .from('forum_registrations')
+          .upsert(
+            { email, display_name: displayName, registered_at: new Date().toISOString() },
+            { onConflict: 'email' },
+          )
+
+        if (upsertError) {
+          console.error('Could not store registration in Supabase.', upsertError)
+          setRegisterError('We could not save your registration to Supabase. Please try again.')
+          return
+        }
+
+        const { error: authError } = await supabase.auth.signInWithOtp({
+          email,
+          options: {
+            data: { display_name: displayName },
+            emailRedirectTo: typeof window !== 'undefined' ? `${window.location.origin}/forum` : undefined,
+          },
+        })
+
+        if (authError) {
+          console.warn('Supabase OTP email could not be sent.', authError)
+        }
+      } catch (error) {
+        console.error('Unexpected Supabase error during registration.', error)
+        setRegisterError('Something went wrong connecting to Supabase. Please try again.')
+        return
+      }
+    }
+
     setUser(nextUser)
 
     if (typeof window !== 'undefined') {
       window.localStorage.setItem(storageKeys.user, JSON.stringify(nextUser))
     }
 
-    setRegisterSuccess('Registration complete. You can now start new discussions and reply to threads.')
+    setRegisterSuccess(
+      supabaseEnabled
+        ? 'Registration saved with Supabase. Check your inbox for a login link.'
+        : 'Registration complete. You can now start new discussions and reply to threads.',
+    )
     event.currentTarget.reset()
   }
 
-  const handleSignOut = () => {
+  const handleSignOut = async () => {
+    if (supabaseEnabled) {
+      try {
+        await supabase.auth.signOut()
+      } catch (error) {
+        console.warn('Supabase sign out failed.', error)
+      }
+    }
+
     setUser(null)
     if (typeof window !== 'undefined') {
       window.localStorage.removeItem(storageKeys.user)
     }
   }
 
-  const handleCreateThread = (event: FormEvent<HTMLFormElement>) => {
+  const handleCreateThread = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     setThreadFormError('')
 
@@ -282,22 +461,55 @@ export default function ForumClient() {
       return
     }
 
-    const nextThread: ForumThread = {
-      id: generateId('thread'),
-      title: threadForm.title.trim(),
-      categoryId: threadForm.categoryId,
-      summary: threadForm.summary.trim(),
-      createdAt: new Date().toISOString(),
-      author: user,
-      posts: [],
+    const now = new Date().toISOString()
+    let nextThread: ForumThread | null = null
+
+    if (supabaseEnabled) {
+      try {
+        const { data, error } = await supabase
+          .from('forum_threads')
+          .insert({
+            title: threadForm.title.trim(),
+            summary: threadForm.summary.trim(),
+            category_id: threadForm.categoryId,
+            author_display_name: user.displayName,
+            author_email: user.email,
+          })
+          .select('id,title,category_id,summary,author_display_name,author_email,created_at')
+          .single()
+
+        if (error) {
+          console.error('Could not publish thread to Supabase.', error)
+          setThreadFormError('We could not publish your discussion to Supabase. Please try again.')
+          return
+        }
+
+        nextThread = mapSupabaseThread(data as ThreadRow, [])
+      } catch (error) {
+        console.error('Unexpected Supabase error when creating a thread.', error)
+        setThreadFormError('Something went wrong connecting to Supabase. Please try again later.')
+        return
+      }
+    } else {
+      nextThread = {
+        id: generateId('thread'),
+        title: threadForm.title.trim(),
+        categoryId: threadForm.categoryId,
+        summary: threadForm.summary.trim(),
+        createdAt: now,
+        author: user,
+        posts: [],
+      }
     }
+
+    if (!nextThread) return
 
     setThreads((previous) => [nextThread, ...previous])
     setThreadForm(initialThreadForm)
     setActiveThreadId(nextThread.id)
   }
 
-  const handleReply = (threadId: string) => (event: FormEvent<HTMLFormElement>) => {
+  const handleReply = (threadId: string) => async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     if (!user) {
       setReplyErrors((prev) => ({ ...prev, [threadId]: 'Register or sign in to contribute to this discussion.' }))
@@ -310,12 +522,44 @@ export default function ForumClient() {
       return
     }
 
-    const nextPost: ForumPost = {
-      id: generateId('post'),
-      author: user,
-      content,
-      createdAt: new Date().toISOString(),
+    const now = new Date().toISOString()
+    let nextPost: ForumPost | null = null
+
+    if (supabaseEnabled) {
+      try {
+        const { data, error } = await supabase
+          .from('forum_posts')
+          .insert({
+            thread_id: threadId,
+            content,
+            author_display_name: user.displayName,
+            author_email: user.email,
+          })
+          .select('id,thread_id,content,author_display_name,author_email,created_at')
+          .single()
+
+        if (error) {
+          console.error('Could not store reply in Supabase.', error)
+          setReplyErrors((prev) => ({ ...prev, [threadId]: 'Reply could not be saved to Supabase. Please try again.' }))
+          return
+        }
+
+        nextPost = mapSupabasePost(data as PostRow)
+      } catch (error) {
+        console.error('Unexpected Supabase error when saving a reply.', error)
+        setReplyErrors((prev) => ({ ...prev, [threadId]: 'A Supabase error occurred. Please try again in a moment.' }))
+        return
+      }
+    } else {
+      nextPost = {
+        id: generateId('post'),
+        author: user,
+        content,
+        createdAt: now,
+      }
     }
+
+    if (!nextPost) return
 
     setThreads((previous) =>
       previous.map((thread) =>
@@ -349,6 +593,12 @@ export default function ForumClient() {
         </div>
       </header>
 
+      {loadError && (
+        <div className="mb-8 rounded-3xl border border-amber-500/40 bg-amber-500/10 p-4 text-sm text-amber-200">
+          {loadError}
+        </div>
+      )}
+
       <section className="grid gap-10 lg:grid-cols-[300px,1fr]">
         <aside className="flex flex-col gap-8">
           <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-6 shadow-xl shadow-slate-950/40">
@@ -373,7 +623,9 @@ export default function ForumClient() {
                 </p>
                 <button
                   type="button"
-                  onClick={handleSignOut}
+                  onClick={() => {
+                    void handleSignOut()
+                  }}
                   className="inline-flex items-center justify-center rounded-full border border-slate-700 px-4 py-2 text-sm font-semibold text-slate-200 transition hover:border-slate-500 hover:text-white"
                 >
                   Sign out
@@ -564,7 +816,11 @@ export default function ForumClient() {
               </p>
             </div>
 
-            {filteredThreads.length === 0 ? (
+            {isLoadingThreads ? (
+              <div className="rounded-3xl border border-slate-800 bg-slate-900/60 p-10 text-center text-sm text-slate-300">
+                Loading the latest discussions from Supabase...
+              </div>
+            ) : filteredThreads.length === 0 ? (
               <div className="rounded-3xl border border-dashed border-slate-700 bg-slate-900/60 p-10 text-center">
                 <p className="text-base font-semibold text-slate-100">No discussions yet in this track</p>
                 <p className="mt-2 text-sm text-slate-300">

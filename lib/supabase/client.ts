@@ -1,8 +1,4 @@
-export type User = {
-  id: string
-  email?: string | null
-  [key: string]: unknown
-}
+import { createClient as createSupabaseClient, type SupabaseClient, type User } from '@supabase/supabase-js'
 
 type Session = {
   user: User | null
@@ -27,8 +23,12 @@ type AuthResponse<T = Record<string, unknown> | null> = Promise<{
   error: { message: string } | null
 }>
 
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 const notConfiguredMessage =
   'Supabase is not configured. Provide NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable authentication.'
+
+const isConfigured = Boolean(supabaseUrl && supabaseAnonKey)
 
 function createQueryBuilder<T>() {
   const response = Promise.resolve({ data: null as T | null, error: { message: notConfiguredMessage } })
@@ -74,6 +74,9 @@ function createAuthStub() {
     async signInWithPassword(): AuthResponse {
       return { data: null, error: { message: notConfiguredMessage } }
     },
+    async signInWithOtp(): AuthResponse {
+      return { data: null, error: { message: notConfiguredMessage } }
+    },
     async signUp(): AuthResponse {
       return { data: null, error: { message: notConfiguredMessage } }
     },
@@ -85,14 +88,51 @@ function createAuthStub() {
   }
 }
 
-export function createClient() {
-  if (process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
-    console.warn('Supabase SDK is not installed in this environment. Falling back to a mock client.')
-  }
+type StubSupabaseClient = {
+  isStub: true
+  auth: ReturnType<typeof createAuthStub>
+  from: <T = unknown>() => ReturnType<typeof createQueryBuilder<T>>
+  rpc: () => Promise<{ data: null; error: { message: string } }>
+}
 
+type SupabaseClientLike = SupabaseClient | StubSupabaseClient
+
+let cachedClient: SupabaseClientLike | null = null
+
+function createStubClient(): StubSupabaseClient {
   return {
+    isStub: true,
     auth: createAuthStub(),
     from: <T = unknown>() => createQueryBuilder<T>(),
     rpc: () => Promise.resolve({ data: null, error: { message: notConfiguredMessage } }),
   }
 }
+
+export function createClient(): SupabaseClientLike {
+  if (!isConfigured || !supabaseUrl || !supabaseAnonKey) {
+    if (!cachedClient || !('isStub' in cachedClient)) {
+      cachedClient = createStubClient()
+    }
+    return cachedClient
+  }
+
+  if (!cachedClient || 'isStub' in cachedClient) {
+    cachedClient = createSupabaseClient(supabaseUrl, supabaseAnonKey, {
+      auth: {
+        persistSession: true,
+        autoRefreshToken: true,
+        detectSessionInUrl: true,
+      },
+    })
+  }
+
+  return cachedClient
+}
+
+export function isSupabaseClientConfigured(client: SupabaseClientLike): client is SupabaseClient {
+  return !('isStub' in client)
+}
+
+export const isSupabaseConfigured = isConfigured
+
+export type { User }
