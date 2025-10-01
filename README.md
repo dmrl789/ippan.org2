@@ -42,7 +42,7 @@ npm install
 
 ### 4. Environment Variables
 
-Create `.env.local`:
+Copy `.env.local.example` to `.env.local` and provide your Supabase project values:
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
