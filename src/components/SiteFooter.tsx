@@ -12,18 +12,18 @@ const navigation = [
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-zinc-200 bg-zinc-50">
+    <footer className="border-t border-border bg-card">
       <Container className="py-12">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link
               href="/"
-              className="text-xl font-bold tracking-tight text-zinc-900"
+              className="text-xl font-bold tracking-tight text-fg hover:text-accent transition-colors"
             >
               IPPAN Foundation
             </Link>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-zinc-600">
+            <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">
               Independent stewardship for the IPPAN protocol—security, public
               goods, and long-term ecosystem growth.
             </p>
@@ -31,13 +31,13 @@ export function SiteFooter() {
 
           {/* Navigation */}
           <div>
-            <h3 className="text-sm font-semibold text-zinc-900">Navigation</h3>
+            <h3 className="text-sm font-semibold text-fg">Navigation</h3>
             <ul className="mt-4 space-y-2">
               {navigation.slice(0, 3).map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-zinc-600 transition-colors hover:text-zinc-900"
+                    className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {item.name}
                   </Link>
@@ -47,13 +47,13 @@ export function SiteFooter() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold text-zinc-900">Resources</h3>
+            <h3 className="text-sm font-semibold text-fg">Resources</h3>
             <ul className="mt-4 space-y-2">
               {navigation.slice(3).map((item) => (
                 <li key={item.name}>
                   <Link
                     href={item.href}
-                    className="text-sm text-zinc-600 transition-colors hover:text-zinc-900"
+                    className="text-sm text-muted transition-colors hover:text-fg"
                   >
                     {item.name}
                   </Link>
@@ -64,7 +64,7 @@ export function SiteFooter() {
                   href="https://ippan-explorer2.vercel.app/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-zinc-600 transition-colors hover:text-zinc-900"
+                  className="inline-flex items-center text-sm text-muted transition-colors hover:text-accent"
                 >
                   DevNet Explorer
                   <svg
@@ -87,8 +87,8 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-12 border-t border-zinc-200 pt-8">
-          <p className="text-center text-sm text-zinc-500">
+        <div className="mt-12 border-t border-border pt-8">
+          <p className="text-center text-sm text-muted">
             © {new Date().getFullYear()} IPPAN Foundation. All rights reserved.
           </p>
         </div>

@@ -16,15 +16,15 @@ export function Button({
   className = "",
 }: ButtonProps) {
   const baseStyles =
-    "inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2";
+    "inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-bg";
 
   const variants = {
     primary:
-      "bg-zinc-900 text-white hover:bg-zinc-800 focus:ring-zinc-900 shadow-lg shadow-zinc-900/20",
+      "bg-accent text-bg hover:opacity-90 shadow-lg shadow-accent/20",
     secondary:
-      "bg-zinc-100 text-zinc-900 hover:bg-zinc-200 focus:ring-zinc-500",
+      "border border-border bg-card2 text-fg hover:bg-card",
     outline:
-      "border-2 border-zinc-900 text-zinc-900 hover:bg-zinc-900 hover:text-white focus:ring-zinc-900",
+      "border border-border text-fg hover:bg-card hover:border-accent/50",
   };
 
   const combinedClassName = `${baseStyles} ${variants[variant]} ${className}`;

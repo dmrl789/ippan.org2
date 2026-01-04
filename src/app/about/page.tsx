@@ -25,13 +25,13 @@ export default function AboutPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-fg sm:text-5xl">
               What is the IPPAN Foundation?
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-zinc-600">
+            <p className="mt-6 text-xl leading-relaxed text-muted">
               The IPPAN Foundation is an independent organization dedicated to
               the long-term health of the IPPAN protocol and its open ecosystem.
             </p>
@@ -43,15 +43,15 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <div className="prose prose-zinc max-w-none">
-              <p className="text-lg leading-relaxed text-zinc-600">
+            <div className="prose prose-invert max-w-none">
+              <p className="text-lg leading-relaxed text-muted">
                 Our role is stewardship: supporting security, neutrality, and
                 credible adoption by funding public goods and maintaining clear
                 governance processes. We operate independently to ensure the
                 protocol remains open, secure, and accessible to all builders
                 and users.
               </p>
-              <p className="mt-4 text-lg leading-relaxed text-zinc-600">
+              <p className="mt-4 text-lg leading-relaxed text-muted">
                 The Foundation takes a long-term view, focusing on sustainable
                 growth and the development of robust infrastructure rather than
                 short-term gains. We believe that transparency and
@@ -64,7 +64,7 @@ export default function AboutPage() {
       </section>
 
       {/* What we are / What we are not */}
-      <section className="border-t border-zinc-200 bg-zinc-50 py-16 sm:py-20">
+      <section className="border-t border-border bg-card py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-5xl">
             <SectionHeading
@@ -74,10 +74,10 @@ export default function AboutPage() {
             />
             <div className="mt-12 grid gap-8 md:grid-cols-2">
               {/* What we are */}
-              <div className="rounded-2xl border border-zinc-200 bg-white p-8">
-                <h3 className="flex items-center gap-2 text-xl font-semibold text-zinc-900">
+              <div className="rounded-2xl border border-border bg-card2 p-8">
+                <h3 className="flex items-center gap-2 text-xl font-semibold text-fg">
                   <svg
-                    className="h-6 w-6 text-green-600"
+                    className="h-6 w-6 text-success"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -95,9 +95,9 @@ export default function AboutPage() {
                   {whatWeAre.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-zinc-600"
+                      className="flex items-start gap-3 text-muted"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500" />
+                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-success" />
                       {item}
                     </li>
                   ))}
@@ -105,10 +105,10 @@ export default function AboutPage() {
               </div>
 
               {/* What we are not */}
-              <div className="rounded-2xl border border-zinc-200 bg-white p-8">
-                <h3 className="flex items-center gap-2 text-xl font-semibold text-zinc-900">
+              <div className="rounded-2xl border border-border bg-card2 p-8">
+                <h3 className="flex items-center gap-2 text-xl font-semibold text-fg">
                   <svg
-                    className="h-6 w-6 text-red-600"
+                    className="h-6 w-6 text-danger"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -126,9 +126,9 @@ export default function AboutPage() {
                   {whatWeAreNot.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 text-zinc-600"
+                      className="flex items-start gap-3 text-muted"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-red-500" />
+                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-danger" />
                       {item}
                     </li>
                   ))}
@@ -143,10 +143,10 @@ export default function AboutPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
+            <h2 className="text-2xl font-bold tracking-tight text-fg">
               Want to learn more?
             </h2>
-            <p className="mt-4 text-zinc-600">
+            <p className="mt-4 text-muted">
               Explore our mission, programs, and governance structure.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

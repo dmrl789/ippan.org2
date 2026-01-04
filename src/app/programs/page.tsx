@@ -74,13 +74,13 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-fg sm:text-5xl">
               Programs
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-zinc-600">
+            <p className="mt-6 text-xl leading-relaxed text-muted">
               The Foundation supports the IPPAN ecosystem through focused
               programs in grants, security, research, and education.
             </p>
@@ -95,15 +95,15 @@ export default function ProgramsPage() {
             {programs.map((program) => (
               <div
                 key={program.title}
-                className="rounded-2xl border border-zinc-200 bg-white p-8"
+                className="rounded-2xl border border-border bg-card p-8 transition-shadow hover:shadow-glow"
               >
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-zinc-100 text-zinc-700">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-card2 text-accent">
                   {program.icon}
                 </div>
-                <h3 className="mb-3 text-xl font-semibold text-zinc-900">
+                <h3 className="mb-3 text-xl font-semibold text-fg">
                   {program.title}
                 </h3>
-                <p className="leading-relaxed text-zinc-600">
+                <p className="leading-relaxed text-muted">
                   {program.description}
                 </p>
               </div>
@@ -113,26 +113,26 @@ export default function ProgramsPage() {
       </section>
 
       {/* How to Apply */}
-      <section className="border-t border-zinc-200 bg-zinc-50 py-16 sm:py-20">
+      <section className="border-t border-border bg-card py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <div className="rounded-2xl border border-zinc-200 bg-white p-8 sm:p-12">
+            <div className="rounded-2xl border border-border bg-card2 p-8 sm:p-12">
               <SectionHeading
                 title="How to apply"
                 subtitle="Interested in receiving a grant or participating in our programs?"
               />
-              <div className="prose prose-zinc max-w-none">
-                <p className="text-zinc-600">
+              <div className="prose prose-invert max-w-none">
+                <p className="text-muted">
                   Grant applications will be published with clear criteria,
                   milestones, and reporting requirements. We evaluate proposals
                   based on their potential impact on the ecosystem, technical
                   feasibility, and alignment with our mission.
                 </p>
-                <p className="mt-4 text-zinc-600">
+                <p className="mt-4 text-muted">
                   For now, contact the Foundation with a short proposal
                   outlining:
                 </p>
-                <ul className="mt-4 space-y-2 text-zinc-600">
+                <ul className="mt-4 space-y-2 text-muted">
                   <li>Project description and goals</li>
                   <li>Team background and qualifications</li>
                   <li>Requested funding amount and timeline</li>

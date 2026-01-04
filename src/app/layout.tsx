@@ -49,7 +49,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} flex min-h-screen flex-col bg-white`}>
+      <body className={`${inter.className} flex min-h-screen flex-col bg-bg text-fg`}>
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />

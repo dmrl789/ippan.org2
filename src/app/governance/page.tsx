@@ -58,13 +58,13 @@ export default function GovernancePage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-fg sm:text-5xl">
               Governance
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-zinc-600">
+            <p className="mt-6 text-xl leading-relaxed text-muted">
               The Foundation maintains clear policies designed to support
               neutrality, manage conflicts of interest, and ensure
               accountability.
@@ -77,13 +77,13 @@ export default function GovernancePage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <p className="text-lg leading-relaxed text-zinc-600">
+            <p className="text-lg leading-relaxed text-muted">
               Governance at the IPPAN Foundation focuses on published processes
               and measurable outcomes. We believe that clear, consistent
               policies are essential for building trust and ensuring the
               long-term health of the protocol ecosystem.
             </p>
-            <p className="mt-4 text-lg leading-relaxed text-zinc-600">
+            <p className="mt-4 text-lg leading-relaxed text-muted">
               All policies are regularly reviewed and updated to reflect best
               practices and community feedback. We are committed to continuous
               improvement in our governance structures.
@@ -93,7 +93,7 @@ export default function GovernancePage() {
       </section>
 
       {/* Policies */}
-      <section className="border-t border-zinc-200 bg-zinc-50 py-16 sm:py-20">
+      <section className="border-t border-border bg-card py-16 sm:py-20">
         <Container>
           <SectionHeading
             title="Our policies"
@@ -104,22 +104,22 @@ export default function GovernancePage() {
             {policies.map((policy) => (
               <div
                 key={policy.title}
-                className="rounded-2xl border border-zinc-200 bg-white p-8"
+                className="rounded-2xl border border-border bg-card2 p-8"
               >
-                <h3 className="text-xl font-semibold text-zinc-900">
+                <h3 className="text-xl font-semibold text-fg">
                   {policy.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-zinc-600">
+                <p className="mt-3 leading-relaxed text-muted">
                   {policy.description}
                 </p>
                 <ul className="mt-6 grid gap-2 sm:grid-cols-2">
                   {policy.items.map((item) => (
                     <li
                       key={item}
-                      className="flex items-center gap-2 text-sm text-zinc-600"
+                      className="flex items-center gap-2 text-sm text-muted"
                     >
                       <svg
-                        className="h-4 w-4 flex-shrink-0 text-green-600"
+                        className="h-4 w-4 flex-shrink-0 text-success"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -145,10 +145,10 @@ export default function GovernancePage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
+            <h2 className="text-2xl font-bold tracking-tight text-fg">
               Questions about governance?
             </h2>
-            <p className="mt-4 text-zinc-600">
+            <p className="mt-4 text-muted">
               We welcome feedback and questions about our governance structures.
             </p>
             <div className="mt-8">

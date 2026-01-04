@@ -13,13 +13,13 @@ export default function ContactPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-fg sm:text-5xl">
               Contact Us
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-zinc-600">
+            <p className="mt-6 text-xl leading-relaxed text-muted">
               Have questions or want to get involved? We'd love to hear from
               you.
             </p>
@@ -41,9 +41,9 @@ export default function ContactPage() {
 
                 <div className="space-y-8">
                   {/* General Inquiries */}
-                  <div className="rounded-2xl border border-zinc-200 bg-white p-6">
+                  <div className="rounded-2xl border border-border bg-card p-6">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-card2 text-accent">
                         <svg
                           className="h-5 w-5"
                           fill="none"
@@ -59,16 +59,16 @@ export default function ContactPage() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-zinc-900">
+                        <h3 className="font-semibold text-fg">
                           General Inquiries
                         </h3>
-                        <p className="mt-1 text-sm text-zinc-600">
+                        <p className="mt-1 text-sm text-muted">
                           For questions about the Foundation, partnerships, or
                           general information.
                         </p>
                         <a
                           href="mailto:foundation@ippan.org"
-                          className="mt-2 inline-block text-sm font-medium text-zinc-900 hover:text-zinc-700"
+                          className="mt-2 inline-block text-sm font-medium text-accent hover:text-accent/80"
                         >
                           foundation@ippan.org
                         </a>
@@ -77,9 +77,9 @@ export default function ContactPage() {
                   </div>
 
                   {/* Security */}
-                  <div className="rounded-2xl border border-red-200 bg-red-50 p-6">
+                  <div className="rounded-2xl border border-danger/30 bg-danger/10 p-6">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-red-100 text-red-700">
+                      <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-danger/20 text-danger">
                         <svg
                           className="h-5 w-5"
                           fill="none"
@@ -95,16 +95,16 @@ export default function ContactPage() {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-zinc-900">
+                        <h3 className="font-semibold text-fg">
                           Security Reports
                         </h3>
-                        <p className="mt-1 text-sm text-zinc-600">
+                        <p className="mt-1 text-sm text-muted">
                           For responsible disclosure of security vulnerabilities
                           or concerns.
                         </p>
                         <a
                           href="mailto:security@ippan.org"
-                          className="mt-2 inline-block text-sm font-medium text-red-700 hover:text-red-600"
+                          className="mt-2 inline-block text-sm font-medium text-danger hover:text-danger/80"
                         >
                           security@ippan.org
                         </a>
@@ -116,11 +116,11 @@ export default function ContactPage() {
 
               {/* Contact Form */}
               <div>
-                <div className="rounded-2xl border border-zinc-200 bg-white p-8">
-                  <h2 className="text-xl font-semibold text-zinc-900">
+                <div className="rounded-2xl border border-border bg-card p-8">
+                  <h2 className="text-xl font-semibold text-fg">
                     Send us a message
                   </h2>
-                  <p className="mt-2 text-sm text-zinc-600">
+                  <p className="mt-2 text-sm text-muted">
                     Fill out the form below and we'll get back to you as soon as
                     possible.
                   </p>
@@ -134,7 +134,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="name"
-                        className="block text-sm font-medium text-zinc-700"
+                        className="block text-sm font-medium text-fg"
                       >
                         Name
                       </label>
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         name="name"
                         id="name"
                         required
-                        className="mt-1 block w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-zinc-900 placeholder-zinc-400 shadow-sm transition-colors focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                        className="mt-1 block w-full rounded-lg border border-border bg-card2 px-4 py-2.5 text-fg placeholder-muted shadow-sm transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                         placeholder="Your name"
                       />
                     </div>
@@ -151,7 +151,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="email"
-                        className="block text-sm font-medium text-zinc-700"
+                        className="block text-sm font-medium text-fg"
                       >
                         Email
                       </label>
@@ -160,7 +160,7 @@ export default function ContactPage() {
                         name="email"
                         id="email"
                         required
-                        className="mt-1 block w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-zinc-900 placeholder-zinc-400 shadow-sm transition-colors focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                        className="mt-1 block w-full rounded-lg border border-border bg-card2 px-4 py-2.5 text-fg placeholder-muted shadow-sm transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="subject"
-                        className="block text-sm font-medium text-zinc-700"
+                        className="block text-sm font-medium text-fg"
                       >
                         Subject
                       </label>
@@ -176,7 +176,7 @@ export default function ContactPage() {
                         name="subject"
                         id="subject"
                         required
-                        className="mt-1 block w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-zinc-900 shadow-sm transition-colors focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                        className="mt-1 block w-full rounded-lg border border-border bg-card2 px-4 py-2.5 text-fg shadow-sm transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                       >
                         <option value="">Select a topic</option>
                         <option value="general">General inquiry</option>
@@ -190,7 +190,7 @@ export default function ContactPage() {
                     <div>
                       <label
                         htmlFor="message"
-                        className="block text-sm font-medium text-zinc-700"
+                        className="block text-sm font-medium text-fg"
                       >
                         Message
                       </label>
@@ -199,14 +199,14 @@ export default function ContactPage() {
                         id="message"
                         rows={5}
                         required
-                        className="mt-1 block w-full rounded-lg border border-zinc-300 px-4 py-2.5 text-zinc-900 placeholder-zinc-400 shadow-sm transition-colors focus:border-zinc-500 focus:outline-none focus:ring-1 focus:ring-zinc-500"
+                        className="mt-1 block w-full rounded-lg border border-border bg-card2 px-4 py-2.5 text-fg placeholder-muted shadow-sm transition-colors focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
                         placeholder="Tell us how we can help..."
                       />
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full rounded-xl bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-900/20 transition-colors hover:bg-zinc-800 focus:outline-none focus:ring-2 focus:ring-zinc-900 focus:ring-offset-2"
+                      className="w-full rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-bg shadow-lg shadow-accent/20 transition-colors hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg"
                     >
                       Send message
                     </button>
