@@ -49,13 +49,13 @@ export default function TransparencyPage() {
   return (
     <>
       {/* Header */}
-      <section className="bg-gradient-to-b from-zinc-50 to-white py-16 sm:py-20">
+      <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl">
+            <h1 className="text-4xl font-bold tracking-tight text-fg sm:text-5xl">
               Transparency
             </h1>
-            <p className="mt-6 text-xl leading-relaxed text-zinc-600">
+            <p className="mt-6 text-xl leading-relaxed text-muted">
               We believe transparency is fundamental to building trust. Here's
               how we maintain accountability to the ecosystem.
             </p>
@@ -67,11 +67,11 @@ export default function TransparencyPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-3xl">
-            <div className="rounded-2xl border border-zinc-200 bg-zinc-50 p-8 sm:p-12">
-              <h2 className="text-2xl font-bold text-zinc-900">
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-glow sm:p-12">
+              <h2 className="text-2xl font-bold text-fg">
                 Our commitment to transparency
               </h2>
-              <p className="mt-4 text-lg leading-relaxed text-zinc-600">
+              <p className="mt-4 text-lg leading-relaxed text-muted">
                 The IPPAN Foundation is committed to operating with full
                 transparency. We publish our policies, report on our activities,
                 and maintain open communication with the community. This
@@ -84,7 +84,7 @@ export default function TransparencyPage() {
       </section>
 
       {/* Transparency Areas */}
-      <section className="border-t border-zinc-200 bg-zinc-50 py-16 sm:py-20">
+      <section className="border-t border-border bg-card py-16 sm:py-20">
         <Container>
           <SectionHeading
             title="How we maintain transparency"
@@ -95,22 +95,22 @@ export default function TransparencyPage() {
             {transparencyAreas.map((area) => (
               <div
                 key={area.title}
-                className="rounded-2xl border border-zinc-200 bg-white p-8"
+                className="rounded-2xl border border-border bg-card2 p-8"
               >
-                <h3 className="text-xl font-semibold text-zinc-900">
+                <h3 className="text-xl font-semibold text-fg">
                   {area.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-zinc-600">
+                <p className="mt-3 leading-relaxed text-muted">
                   {area.description}
                 </p>
                 <ul className="mt-6 space-y-2">
                   {area.details.map((detail) => (
                     <li
                       key={detail}
-                      className="flex items-start gap-3 text-zinc-600"
+                      className="flex items-start gap-3 text-muted"
                     >
                       <svg
-                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-zinc-400"
+                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-accent"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -136,10 +136,10 @@ export default function TransparencyPage() {
       <section className="py-16 sm:py-20">
         <Container>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900">
+            <h2 className="text-2xl font-bold tracking-tight text-fg">
               Have questions about our operations?
             </h2>
-            <p className="mt-4 text-zinc-600">
+            <p className="mt-4 text-muted">
               We're happy to provide additional information about our
               transparency practices.
             </p>

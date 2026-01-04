@@ -22,13 +22,13 @@ export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/80">
+    <header className="sticky top-0 z-50 border-b border-border bg-bg/70 backdrop-blur supports-[backdrop-filter]:bg-bg/60">
       <Container>
         <nav className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link
             href="/"
-            className="text-xl font-bold tracking-tight text-zinc-900"
+            className="text-xl font-bold tracking-tight text-fg hover:text-accent transition-colors"
           >
             IPPAN Foundation
           </Link>
@@ -39,7 +39,7 @@ export function SiteHeader() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:bg-card hover:text-fg"
               >
                 {item.name}
               </Link>
@@ -48,7 +48,7 @@ export function SiteHeader() {
               href={devnetLink.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="ml-2 inline-flex items-center rounded-lg bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-zinc-800"
+              className="ml-2 inline-flex items-center rounded-lg bg-accent px-4 py-2 text-sm font-medium text-bg transition-colors hover:opacity-90"
             >
               {devnetLink.name}
               <svg
@@ -70,7 +70,7 @@ export function SiteHeader() {
           {/* Mobile Menu Button */}
           <button
             type="button"
-            className="inline-flex items-center justify-center rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 md:hidden"
+            className="inline-flex items-center justify-center rounded-lg p-2 text-muted hover:bg-card hover:text-fg md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle menu"
@@ -109,13 +109,13 @@ export function SiteHeader() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="border-t border-zinc-200 pb-4 pt-2 md:hidden">
+          <div className="border-t border-border pb-4 pt-2 md:hidden">
             <div className="flex flex-col space-y-1">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="rounded-lg px-3 py-2 text-base font-medium text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900"
+                  className="rounded-lg px-3 py-2 text-base font-medium text-muted transition-colors hover:bg-card hover:text-fg"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -125,7 +125,7 @@ export function SiteHeader() {
                 href={devnetLink.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-2 inline-flex items-center justify-center rounded-lg bg-zinc-900 px-4 py-2.5 text-base font-medium text-white transition-colors hover:bg-zinc-800"
+                className="mt-2 inline-flex items-center justify-center rounded-lg bg-accent px-4 py-2.5 text-base font-medium text-bg transition-colors hover:opacity-90"
               >
                 {devnetLink.name}
                 <svg

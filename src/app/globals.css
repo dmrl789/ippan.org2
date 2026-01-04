@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* IPPAN Explorer-like theme (dark default) */
+:root {
+  --bg: 222 47% 6%;          /* near-black navy */
+  --fg: 210 40% 98%;         /* almost white */
+  --muted: 215 20% 65%;
+  --card: 222 47% 8%;
+  --card2: 222 35% 10%;
+  --border: 217 26% 18%;
+
+  --primary: 210 40% 98%;    /* text-on-accent situations */
+  --accent: 200 100% 60%;    /* cyan/blue accent */
+  --accent2: 255 92% 76%;    /* violet accent (sparingly) */
+
+  --success: 142 76% 45%;
+  --warning: 38 92% 50%;
+  --danger: 0 84% 60%;
+}
+
+html, body { height: 100%; }
+body {
+  background: hsl(var(--bg));
+  color: hsl(var(--fg));
+}
